@@ -1,5 +1,6 @@
 package com.example.zq.bingfang_pro;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -36,6 +37,7 @@ public class zeroActivity extends AppCompatActivity {
     private static EditText Bpm;
     private static EditText Bspo2;
 
+    public static Context sContext;
 
 
 
@@ -43,6 +45,7 @@ public class zeroActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sContext = getApplicationContext();
         setContentView(R.layout.cg);
         vpager_zero = (ViewPager) findViewById(R.id.vpager_zero);
         aList = new ArrayList<View>();
@@ -70,6 +73,19 @@ public class zeroActivity extends AppCompatActivity {
     }
 
     public static void setJspo2(String data){
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c<90||c>100)
+            {
+                Toast.makeText(zeroActivity.sContext, "血氧浓度异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
+
+        }
+
 
         Jspo2.setText(data);
 
@@ -77,29 +93,85 @@ public class zeroActivity extends AppCompatActivity {
 
     public static void setSpm(String data){
 
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c>=20||c<=0)
+            {
+                Toast.makeText(zeroActivity.sContext, "PM2.5异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
+
+        }
         Spm.setText(data);
 
     }
 
     public static void setSspo2(String data){
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c<90||c>100)
+            {
+                Toast.makeText(zeroActivity.sContext, "血氧浓度异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
 
+        }
         Sspo2.setText(data);
 
     }
 
     public static void setBen(String data){
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c>23||c<18)
+            {
+                Toast.makeText(zeroActivity.sContext, "气温异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
 
+        }
         Ben.setText(data);
 
     }
     public static void setBpm(String data){
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c>=20||c<=0)
+            {
+                Toast.makeText(zeroActivity.sContext, "PM2.5异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
 
+        }
         Bpm.setText(data);
 
     }
 
     public static void setBspo2(String data){
+        try{
+            int c = Integer.parseInt(data.toString());
+            if(c<90||c>100)
+            {
+                Toast.makeText(zeroActivity.sContext, "血氧浓度异常！请注意！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
 
+        }
         Bspo2.setText(data);
 
     }
@@ -108,6 +180,30 @@ public class zeroActivity extends AppCompatActivity {
 
 
     public void onClick1(View view) {
+        try{
+            int c = Integer.parseInt(Ben.getText().toString());
+            if(c<=18||c>=23)
+            {
+                Toast.makeText(getApplicationContext(), "正常气温的范围是18°-23°！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            c = Integer.parseInt(Bspo2.getText().toString());
+            if(c<90||c>100)
+            {
+                Toast.makeText(getApplicationContext(), "正常血氧浓度的范围是90%-100%！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            c = Integer.parseInt(Bpm.getText().toString());
+            if(c<=0||c>20)
+            {
+                Toast.makeText(getApplicationContext(), "pm2.5正常范围是0-20！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "格式输入错误！", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
         if (!"".equals(Ben.getText().toString())){
@@ -119,7 +215,7 @@ public class zeroActivity extends AppCompatActivity {
         }
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(100);//等待数据处理时间
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -139,7 +235,7 @@ public class zeroActivity extends AppCompatActivity {
         }
 
         if (!"".equals(Bpm.getText().toString())){
-            DataPacket data=new DataPacket();
+            DataPacket data=new DataPacket();//发送的内容，发送的时间，code数据类型码
             data.setContent(Bpm.getText().toString());
             data.setCode(15);
             data.setSendTime(new Date());
@@ -149,6 +245,18 @@ public class zeroActivity extends AppCompatActivity {
 
     }
     public void onClick2(View view) {
+        try{
+            int c = Integer.parseInt(Jspo2.getText().toString());
+            if(c<=0||c>20)
+            {
+                Toast.makeText(getApplicationContext(), "pm2.5正常范围是0-20！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "格式输入错误！", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (!"".equals(Jspo2.getText().toString())){
             DataPacket data=new DataPacket();
@@ -161,6 +269,25 @@ public class zeroActivity extends AppCompatActivity {
     }
 
     public void onClick3(View view) {
+        try{
+            int c = Integer.parseInt(Spm.getText().toString());
+            if(c<90||c>100)
+            {
+                Toast.makeText(getApplicationContext(), "正常血氧浓度的范围是90%-100%！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            c = Integer.parseInt(Sspo2.getText().toString());
+            if(c<=0||c>20)
+            {
+                Toast.makeText(getApplicationContext(), "pm2.5正常范围是0-20！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "格式输入错误！", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if (!"".equals(Spm.getText().toString())){
             DataPacket data=new DataPacket();
@@ -181,7 +308,6 @@ public class zeroActivity extends AppCompatActivity {
     }
 
     private void sendData(final DataPacket dataPacket){
-
         new Thread(){
 
             @Override

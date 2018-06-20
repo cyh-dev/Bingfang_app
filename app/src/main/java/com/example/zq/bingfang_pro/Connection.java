@@ -56,7 +56,7 @@ public class Connection extends Thread{
             client.write(buffer);
             buffer.clear();
 
-            try {
+            try {//？
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -72,7 +72,7 @@ public class Connection extends Thread{
                     buffer.get(b, buffer.position(), buffer.limit());
 
                     ByteArrayInputStream byteIn = new ByteArrayInputStream(b);
-                    ObjectInputStream objIn = new ObjectInputStream(byteIn);
+                    ObjectInputStream objIn = new ObjectInputStream(byteIn);//反序列化
                     DataPacket result = null;
                     try {
                         result = (DataPacket) objIn.readObject();
