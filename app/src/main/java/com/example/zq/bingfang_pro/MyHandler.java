@@ -25,22 +25,22 @@ public class MyHandler extends Handler{
     private void handleData(DataPacket dataPacket){
 
         switch (dataPacket.getCode()){
-            case 11:
+            case 1:
                 zeroActivity.setJspo2(dataPacket.getContent());
                 break;
-            case 12:
+            case 2:
                 zeroActivity.setSspo2(dataPacket.getContent());
                 break;
-            case 13:
+            case 3:
                 zeroActivity.setSpm(dataPacket.getContent());
                 break;
-            case 14:
+            case 4:
                 zeroActivity.setBspo2(dataPacket.getContent());
                 break;
-            case 15:
+            case 5:
                 zeroActivity.setBpm(dataPacket.getContent());
                 break;
-            case 16:
+            case 6:
                 zeroActivity.setBen(dataPacket.getContent());
                 break;
             default:
@@ -48,6 +48,5 @@ public class MyHandler extends Handler{
         }
 
     }
-
 
 }

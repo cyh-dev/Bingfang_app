@@ -107,14 +107,13 @@ public class zeroActivity extends AppCompatActivity {
 
 
 
-
     public void onClick1(View view) {
 
 
         if (!"".equals(Ben.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Ben.getText().toString());
-            data.setCode(6);
+            data.setCode(16);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -128,7 +127,7 @@ public class zeroActivity extends AppCompatActivity {
         if (!"".equals(Bspo2.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Bspo2.getText().toString());
-            data.setCode(4);
+            data.setCode(14);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -142,7 +141,7 @@ public class zeroActivity extends AppCompatActivity {
         if (!"".equals(Bpm.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Bpm.getText().toString());
-            data.setCode(5);
+            data.setCode(15);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -154,7 +153,7 @@ public class zeroActivity extends AppCompatActivity {
         if (!"".equals(Jspo2.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Jspo2.getText().toString());
-            data.setCode(1);
+            data.setCode(11);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -166,7 +165,7 @@ public class zeroActivity extends AppCompatActivity {
         if (!"".equals(Spm.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Spm.getText().toString());
-            data.setCode(3);
+            data.setCode(13);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -174,7 +173,7 @@ public class zeroActivity extends AppCompatActivity {
         if (!"".equals(Sspo2.getText().toString())){
             DataPacket data=new DataPacket();
             data.setContent(Sspo2.getText().toString());
-            data.setCode(2);
+            data.setCode(12);
             data.setSendTime(new Date());
             sendData(data);
         }
@@ -222,7 +221,7 @@ public class zeroActivity extends AppCompatActivity {
                 buffer.clear();
                 DataPacket dataPacket=new DataPacket();
                 dataPacket.setContent("disconnect");
-                dataPacket.setCode(8);
+                dataPacket.setCode(10);
                 dataPacket.setSendTime(new Date());
                 ByteArrayOutputStream bytesOut=new ByteArrayOutputStream();
                 ObjectOutputStream ojbOut= null;

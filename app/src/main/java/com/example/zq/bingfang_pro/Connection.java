@@ -28,7 +28,6 @@ public class Connection extends Thread{
     public Connection(SocketAddress address,MsgHandler handler){
         this.address=address;
         this.handler=handler;
-
     }
 
     @Override
@@ -43,7 +42,7 @@ public class Connection extends Thread{
 
             DataPacket dataPacket=new DataPacket();
             dataPacket.setContent("connect");
-            dataPacket.setCode(7);
+            dataPacket.setCode(9);
             dataPacket.setSendTime(new Date());
 
             ByteArrayOutputStream bytesOut=new ByteArrayOutputStream();
@@ -57,7 +56,13 @@ public class Connection extends Thread{
             client.write(buffer);
             buffer.clear();
 
-            int index=1000;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            int index=1500;
             while (true) {
                 long count = client.read(buffer);
 
